@@ -42,7 +42,7 @@
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
     <section id="wrapper">
-        <div class="login-register" style="background-image:url('<?php echo base_url();?>assets/images/background/login-register.jpg'')">
+        <div class="login-register" style="background-image:url('<?php echo base_url();?>/assets/images/background/login-register.jpg')">
             <div class="login-box card">
             <img src="<?php echo base_url();?>/assets/images/cimasur_logo_back.png" alt="homepage" class="dark-logo" />
                 <div class="card-body">

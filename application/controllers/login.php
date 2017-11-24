@@ -52,7 +52,7 @@ class Login extends CI_Controller {
                     );
                 // Add user data in session
                 $this->session->set_userdata($session_data);
-                redirect('citas');
+                redirect('bienvenido');
             //}
             } else {
                 $data['mensajeLogin'] = "Usuario No Activo, contacte al administrador";
@@ -69,6 +69,6 @@ class Login extends CI_Controller {
         $this->session->unset_userdata($sess_array);
         $this->session->sess_destroy();
         $data['mensajeLogin'] = 'Session terminada correctamente';
-        $this->load->view('login', $data);
+        $this->load->view('login_app', $data);
     }
 }

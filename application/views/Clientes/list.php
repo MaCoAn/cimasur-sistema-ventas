@@ -57,12 +57,12 @@
                                         <th><?echo $d->Status?></th>
                                         <th>
                                             <? if($d->Status == 'Vigente') { ?>
-                                                <a class="btn waves-effect waves-light btn-secondary" onclick="if (confirm('¿Desea elimiar la seleccion?')) { location.href = '<?php echo base_url('/clientes/eliminarCliemte/'.$d->id) ?>'; } return false;">
-                                                    Desactivar usuario
+                                                <a class="btn waves-effect waves-light btn-secondary" onclick="if (confirm('¿Desea desactivar la seleccion?')) { location.href = '<?php echo base_url('/clientes/eliminarCliemte/'.$d->id) ?>'; } return false;">
+                                                    Desactivar cliente
                                                 </a>      
                                             <?} else { ?>
                                                 <a class="btn waves-effect waves-light btn-secondary" onclick="if (confirm('¿Desea reactivar la seleccion?')) { location.href = '<?php echo base_url('/clientes/reactivarCliente/'.$d->id) ?>'; } return false;">
-                                                    Reactivar usuario
+                                                    Reactivar cliente
                                                 </a>      
                                             <?}  ?>
                                         </th>

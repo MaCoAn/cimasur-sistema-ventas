@@ -19,7 +19,7 @@
                         <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Principal</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="<?php echo base_url();?>clientes">Clientes </a></li>
-                                <li><a href="<?php echo base_url();?>inmuebles">Inmuebles</a></li>
+                                <li style="display:none;"><a href="<?php echo base_url();?>inmuebles">Inmuebles</a></li>
                                 <? if ($this->session->userdata('tipo') != 3 ) { ?>
                                 <li><a href="<?php echo base_url();?>usuarios">Vendedores</a></li>
                                 <? }?>
@@ -32,7 +32,7 @@
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="<?php echo base_url();?>usuarios">Usuarios</a></li>
                                 <li><a href="<?php echo base_url();?>clientes">Clientes</a></li>
-                                <li><a href="<?php echo base_url();?>inmuebles">Inmuebles</a></li>
+                                <li style="display:none;"><a href="<?php echo base_url();?>inmuebles">Inmuebles</a>
                                 <li><a href="<?php echo base_url();?>citas">Citas</a></li>
                                 <li><a href="<?php echo base_url();?>publicidad">Medios de Publcidad</a></li>
                             </ul>
@@ -63,11 +63,11 @@
                                 <li><a href="<?php echo base_url();?>citas/update">Agregar Cita</a></li>
                             </ul>
                         </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-home-variant"></i><span class="hide-menu">Inmuebles</span></a>
+                        <li style="display:none;"> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-home-variant"></i><span class="hide-menu">Inmuebles</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="<?php echo base_url();?>inmuebles">Lista de Inmuebles</a></li>
+                                <li style="display:none;"><a href="<?php echo base_url();?>inmuebles">Lista de Inmuebles</a></li>
                                 <? if ($this->session->userdata('tipo') != 3 ) { ?>
-                                <li><a href="<?php echo base_url();?>inmuebles/update">Agregar Inmueble</a></li>
+                                <li style="display:none;"><a href="<?php echo base_url();?>inmuebles/update">Agregar Inmueble</a></li>
                                 <? }?>
                             </ul>
                         </li>
