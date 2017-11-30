@@ -2,7 +2,6 @@
 
 class UsuariosModel extends CI_Model
 {
-
     public function __construct(){
         $this->load->database();
     }
@@ -48,7 +47,10 @@ class UsuariosModel extends CI_Model
             'StatusId' => $this->input->post('estatus')
         );
 
-        return $this->db->insert('Usuario', $data);
+        $this->db->insert('Usuario', $data);
+        $idUsuario = $this->db->insert_id();
+        $queryUsuario = $this->db->get_where('Usuario', array('id' => $idUsuario));
+        return $queryUsuario->row();
     }
 
     public function actualizarUsuario($id) 

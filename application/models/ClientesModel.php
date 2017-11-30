@@ -265,7 +265,6 @@ class ClientesModel extends CI_Model {
             'idMunicipio' => (int)$this->input->post('idMunicipio'),
             'email' => $email,
             'idComoSeEntero' => $this->input->post('idComoSeEntero'),
-            'idStatus' => $this->input->post('idStatus'),
             'hizoRecorrido' => (int)$this->input->post('hizoRecorrido'),
         );
         
@@ -361,5 +360,51 @@ class ClientesModel extends CI_Model {
 
         $this->db->where('id', $idCliente);
         $this->db->update('Cliente', $clienteData);
+    }
+    
+    public function filtrarClientesPorFechas()
+    {
+        $mesInicial = $this->input->post('mesInicial');
+        $añoInicial = $this->input->post('anioInicial');
+        $mesFinal = $this->input->post('mesFinal');
+        $añoFinal = $this->input->post('anioFinal');
+
+        if( $mesInicial != "0" && $añoInicial != "0" && $mesFinal != "0" && $añoFinal != "0" ){
+
+            $diaFinal = "31";
+            if( $mesFinal == "04" || $mesFinal == "06" || $mesFinal == "09" || $mesFinal == "11" ){
+                $diaFinal = "30";
+            }
+            else if( $mesFinal == "02" ){
+                $diaFinal = "28";
+            }
+
+            $fechaInicial = $añoInicial.$mesInicial."01";
+            $fechaFinal = $añoFinal.$mesFinal.$diaFinal;
+            $sql = "SELECT c.id, c.Nombres, c.Apellidos, c.Email, c.FechaIngreso, c.HizoRecorrido, 
+            e.Descripcion as Enterado, s.Status 
+            FROM Cliente c 
+            INNER JOIN ComoSeEntero e ON c.idComoSeEntero = e.id 
+            INNER JOIN StatusCliente s ON c.idStatus = s.id 
+            WHERE c.FechaIngreso >= {$fechaInicial} AND c.FechaIngreso <= {$fechaFinal}";
+    
+            $query = $this->db->query($sql);
+            return $query->result(); 
+        }
+        else if( $mesInicial != "0" && $añoInicial != "0" && $mesFinal == "0" && $añoFinal == "0" ){
+            $fechaInicial = $añoInicial.$mesInicial."01";
+            $sql = "SELECT c.id, c.Nombres, c.Apellidos, c.Email, c.FechaIngreso, c.HizoRecorrido, 
+            e.Descripcion as Enterado, s.Status 
+            FROM Cliente c 
+            INNER JOIN ComoSeEntero e ON c.idComoSeEntero = e.id 
+            INNER JOIN StatusCliente s ON c.idStatus = s.id 
+            WHERE c.FechaIngreso >= {$fechaInicial}";
+
+            $query = $this->db->query($sql);
+            return $query->result(); 
+        }
+        else{
+            return $this->getListaClientes();
+        }
     }
 }

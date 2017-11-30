@@ -249,4 +249,31 @@ class Clientes extends CI_Controller {
         $ClientesModel->reactivarCliente($id);
         redirect(base_url('/clientes/index'));
     }
+    
+    public function filtrarClientesPorFechas()
+    {
+        $this->load->helper('url');
+        $this->load->helper('html');
+        $this->load->library('session');
+        
+        if(!$this->session->userdata('logged_in')){
+            redirect('login');
+        } 
+        if($this->input->post['anioInicial']){
+            redirect('Clientes/filtrarClientesPorFechas');
+        }
+
+        $clientesModel = new ClientesModel;
+        $data['clientes'] = $clientesModel->filtrarClientesPorFechas();
+        $data['mesInicial'] = $this->input->post('mesInicial');
+        $data['mesFinal'] = $this->input->post('mesFinal');
+        $data['anioInicial'] = $this->input->post('anioInicial');
+        $data['anioFinal'] = $this->input->post('anioFinal');
+        
+        $this->load->view('Plantilla/header_app');
+        $this->load->view('Plantilla/topbar_app');
+        $this->load->view('Plantilla/sidebar_app');
+        $this->load->view('Clientes/list', $data);
+        $this->load->view('Plantilla/footer_app');
+    }
 }
