@@ -14,7 +14,7 @@ class Citas extends CI_Controller {
      * Muestra la informacion 
      * en el listado de Citas
      */
-    public function index() 
+    public function index($id = null) 
     {
         $this->load->helper('url');
         $this->load->helper('html');
@@ -25,7 +25,7 @@ class Citas extends CI_Controller {
         } 
 
         $citasModel = new CitasModel;
-        $data['Citas'] = $citasModel->getCitas();
+        $data['Citas'] = $citasModel->getCitas($id);
 
         $this->load->view('Plantilla/header_app');
         $this->load->view('Plantilla/topbar_app');

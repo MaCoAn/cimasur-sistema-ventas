@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head><meta http-equiv="Content-Type" content="text/html; charset=gb18030">
-    
+<head>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,7 +42,7 @@
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
     <section id="wrapper">
-        <div class="login-register" style="background-image:url('<?php echo base_url();?>/assets/images/background/login-register.jpg')">
+        <div class="login-register" style="background-image:url('<?php echo base_url('assets/images/background/login-register.jpg');?>')">
             <div class="login-box card">
             <img src="<?php echo base_url();?>/assets/images/cimasur_logo_back.png" alt="homepage" class="dark-logo" />
                 <div class="card-body">

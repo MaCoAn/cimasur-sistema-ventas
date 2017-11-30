@@ -125,10 +125,33 @@ class Usuarios extends CI_Controller
    {
        $this->load->helper('url');
        $this->load->helper('html');
+       $this->load->library('email');
 
        $usuarios=new UsuariosModel;
-       $usuarios->insertarUsuario();
+       $nuevoUsuario = $usuarios->insertarUsuario();
+       $nuevoPassword = $this->input->post('password');
+       $this->sendEmailNuevoUsuario($nuevoUsuario,$nuevoPassword);
+
        redirect(base_url('/usuarios/'));
+    }
+
+    public function sendEmailNuevoUsuario( $nuevoUsuario, $nuevoPassword )
+    {
+        $this->email->from('cimasurcrmsystem@gmail.com', 'CRM Cimasur System');
+        $this->email->to($nuevoUsuario->email);
+        $this->email->subject('Bienvenido al CRM de Cimasur');
+
+        $message = "Te damos la bienvenida ".$nuevoUsuario->Nombre." ".$nuevoUsuario->Apellidos.
+                   " al CRM de Cimasur!\n\n".
+                   "Para ingresar al CRM de Cimasur ingresa a la siguiente pagina: http://www.compra-venta-casas.com/crm/ \n\n".
+                   "Tus datos para ingresar al sitio son los siguientes:\n".
+                   "* Usuario: ".$nuevoUsuario->nickname."\n".
+                   "* Password: ".$nuevoPassword."\n\n".
+                   "Para cambiar tu password, una vez dentro del sitio ingresa al \"Mi Perfil\" en las opciones del menu. \n".
+                   "Para cualquier duda, favor de contactar a la Arq. Marisela Zermeño";
+
+        $this->email->message($message);
+        $this->email->send();
     }
 
     public function actualizarUsuario($id) 
