@@ -61,8 +61,8 @@
                                         <div class="col-xs-5 selectContainer">
                                             <select class="form-control" name="anioInicial">
                                             <option value="0">A&ntilde;o Inicial ...</option>
-                                            <? for($a«Ğo = 2010; $a«Ğo <= 2020; $a«Ğo++ ) { ?>
-                                                <option value = <?echo $a«Ğo?> <?php if ($anioInicial==$a«Ğo) echo "selected";?>><?echo $a«Ğo?></option>
+                                            <? for($aï¿½ï¿½ï¿½o = 2010; $aï¿½ï¿½ï¿½o <= 2020; $aï¿½ï¿½ï¿½o++ ) { ?>
+                                                <option value = <?echo $aï¿½ï¿½ï¿½o?> <?php if ($anioInicial==$aï¿½ï¿½ï¿½o) echo "selected";?>><?echo $aï¿½ï¿½ï¿½o?></option>
                                             <?}?>
                                             </select>
                                         </div>
@@ -92,8 +92,8 @@
                                         <div class="col-xs-5 selectContainer">
                                             <select class="form-control" name="anioFinal">
                                             <option value="0">A&ntilde;o Final...</option>
-                                            <? for($a«Ğo = 2010; $a«Ğo <= 2020; $a«Ğo++ ) { ?>
-                                                <option value = <?echo $a«Ğo?> <?php if ($anioFinal==$a«Ğo) echo "selected";?> ><?echo $a«Ğo?></option>
+                                            <? for($aï¿½ï¿½ï¿½o = 2010; $aï¿½ï¿½ï¿½o <= 2020; $aï¿½ï¿½ï¿½o++ ) { ?>
+                                                <option value = <?echo $aï¿½ï¿½ï¿½o?> <?php if ($anioFinal==$aï¿½ï¿½ï¿½o) echo "selected";?> ><?echo $aï¿½ï¿½ï¿½o?></option>
                                             <?}?>
                                             </select>
                                         </div>
@@ -131,7 +131,7 @@
                                         <th><?echo $d->FechaIngreso?></th>
                                         <th><?echo $d->HizoRecorrido?></th>
                                         <th><?echo $d->Status?></th>
-                                        <th><a class="btn waves-effect waves-light btn-secondary" href="<?php echo base_url('/citas/'.$d->id);?>">Seguimiento</a></th>
+                                        <th><a class="btn waves-effect waves-light btn-secondary" href="<?php echo base_url('/citas/seguimiento_list/'.$d->id);?>">Seguimiento</a></th>
                                         <th>
                                             <? if($d->Status == 'Vigente') { ?>
                                                 <a class="btn waves-effect waves-light btn-secondary" onclick="if (confirm('Â¿Desea desactivar la seleccion?')) { location.href = '<?php echo base_url('/clientes/eliminarCliemte/'.$d->id) ?>'; } return false;">

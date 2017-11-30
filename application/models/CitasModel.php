@@ -33,22 +33,22 @@ class CitasModel extends CI_Model {
 
     public function getCitas($id = NULL)
     {
-        $sql = "SELECT * FROM (
-                    SELECT c.id, cl.Nombres, cl.Apellidos, c.NoCita, DATE_FORMAT(c.Fecha, '%d-%m-%Y') as Fecha,
+        $sql = "SELECT c.id, cl.Nombres, cl.Apellidos, c.NoCita, DATE_FORMAT(c.Fecha, '%d-%m-%Y') as Fecha,
                         c.Comentarios
                     FROM Cita c
-                    INNER JOIN Cliente cl ON c.IdCliente = cl.Id
-                    ORDER BY cl.Nombres, cl.Apellidos, c.NoCita ) mt ";
+                    INNER JOIN Cliente cl ON c.IdCliente = cl.Id";
 
         if ($id == NULL)
         {
             // Si no hay Id, entonces regresa todas las citas
-            $query = $this->db->query($sql);
+            $query = $this->db->query($sql . " ORDER BY cl.Nombres, cl.Apellidos, c.NoCita ");
             return $query->result();
         } else {
             // Regresa solo la cita asociada a este Id
-            $query = $this->db->query($sql . " WHERE mt.id = ?", array($id));
-            return $query->row();
+            $query = $this->db->query($sql . " WHERE cl.Id = ? 
+            ORDER BY cl.Nombres, cl.Apellidos, c.NoCita", array($id));
+
+            return $query->result();
         }
     }
 

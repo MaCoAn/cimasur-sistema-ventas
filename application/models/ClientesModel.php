@@ -365,11 +365,11 @@ class ClientesModel extends CI_Model {
     public function filtrarClientesPorFechas()
     {
         $mesInicial = $this->input->post('mesInicial');
-        $a0Š9oInicial = $this->input->post('anioInicial');
+        $aï¿½0ï¿½9oInicial = $this->input->post('anioInicial');
         $mesFinal = $this->input->post('mesFinal');
-        $a0Š9oFinal = $this->input->post('anioFinal');
+        $aï¿½0ï¿½9oFinal = $this->input->post('anioFinal');
 
-        if( $mesInicial != "0" && $a0Š9oInicial != "0" && $mesFinal != "0" && $a0Š9oFinal != "0" ){
+        if( $mesInicial != "0" && $aï¿½0ï¿½9oInicial != "0" && $mesFinal != "0" && $aï¿½0ï¿½9oFinal != "0" ){
 
             $diaFinal = "31";
             if( $mesFinal == "04" || $mesFinal == "06" || $mesFinal == "09" || $mesFinal == "11" ){
@@ -379,8 +379,8 @@ class ClientesModel extends CI_Model {
                 $diaFinal = "28";
             }
 
-            $fechaInicial = $a0Š9oInicial.$mesInicial."01";
-            $fechaFinal = $a0Š9oFinal.$mesFinal.$diaFinal;
+            $fechaInicial = $aï¿½0ï¿½9oInicial.$mesInicial."01";
+            $fechaFinal = $aï¿½0ï¿½9oFinal.$mesFinal.$diaFinal;
             $sql = "SELECT c.id, c.Nombres, c.Apellidos, c.Email, c.FechaIngreso, c.HizoRecorrido, 
             e.Descripcion as Enterado, s.Status 
             FROM Cliente c 
@@ -391,8 +391,8 @@ class ClientesModel extends CI_Model {
             $query = $this->db->query($sql);
             return $query->result(); 
         }
-        else if( $mesInicial != "0" && $a0Š9oInicial != "0" && $mesFinal == "0" && $a0Š9oFinal == "0" ){
-            $fechaInicial = $a0Š9oInicial.$mesInicial."01";
+        else if( $mesInicial != "0" && $aï¿½0ï¿½9oInicial != "0" && $mesFinal == "0" && $aï¿½0ï¿½9oFinal == "0" ){
+            $fechaInicial = $aï¿½0ï¿½9oInicial.$mesInicial."01";
             $sql = "SELECT c.id, c.Nombres, c.Apellidos, c.Email, c.FechaIngreso, c.HizoRecorrido, 
             e.Descripcion as Enterado, s.Status 
             FROM Cliente c 

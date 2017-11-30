@@ -14,7 +14,7 @@ class Citas extends CI_Controller {
      * Muestra la informacion 
      * en el listado de Citas
      */
-    public function index($id = null) 
+    public function index($id = NULL) 
     {
         $this->load->helper('url');
         $this->load->helper('html');
@@ -30,7 +30,12 @@ class Citas extends CI_Controller {
         $this->load->view('Plantilla/header_app');
         $this->load->view('Plantilla/topbar_app');
         $this->load->view('Plantilla/sidebar_app');
-        $this->load->view('Citas/list', $data);
+        if ($id != NULL) {
+            $this->load->view('Citas/seguimiento_list', $data);            
+        }
+        else {
+            $this->load->view('Citas/list', $data);
+        }
         $this->load->view('Plantilla/footer_app');
     }
 

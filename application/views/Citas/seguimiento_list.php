@@ -27,7 +27,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Todas las citas</h4>
+                    <h4 class="card-title">Seguimiento de citas</h4>
                     <h6 class="card-subtitle">Exportar las citas a Excel, PDF o imprimirlas</h6>
                     <div type="button" class="btn waves-effect waves-light btn-secondary">
                         <a href="<?php echo base_url('/citas/update/') ?>">Agregar Nueva Cita</a>
