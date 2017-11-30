@@ -35,12 +35,9 @@ class CitasModel extends CI_Model {
     {
         $sql = "SELECT * FROM (
                     SELECT c.id, cl.Nombres, cl.Apellidos, c.NoCita, DATE_FORMAT(c.Fecha, '%d-%m-%Y') as Fecha,
-                        c.Comentarios, im.nombre as inmueble, ti.Nombre as Interesado
+                        c.Comentarios
                     FROM Cita c
                     INNER JOIN Cliente cl ON c.IdCliente = cl.Id
-                    INNER JOIN InmuebleCliente ic ON ic.idCita = c.id
-                    INNER JOIN Inmueble im ON ic.idInmueble = im.Id 
-                    INNER JOIN TipoInteresado ti ON ic.TipoInteresadoId = ti.id
                     ORDER BY cl.Nombres, cl.Apellidos, c.NoCita ) mt ";
 
         if ($id == NULL)

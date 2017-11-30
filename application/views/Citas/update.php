@@ -64,10 +64,10 @@
                                 ><? echo $comentarios ?></textarea> </div>
 
                         <div class="row p-t-20">
-                            <div class="col-md-6">
+                            <div class="col-md-6" style="display:none">
                                 <div class="form-group">
                                     <label>Inmueble</label><br>
-                                    <select name="idInmueble" required>
+                                    <select name="idInmueble">
                                         <option value="">Selecciona una opción</option>
                                         <? foreach ($Inmuebles as $i) { ?>      
                                             <option value="<? echo $i->id ?>"><? echo $i->Nombre . "  -  $" . $i->Precio . "  -  " . $i->Disponibilidad ?></option>      
@@ -76,7 +76,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Nivel de Interés en el Inmueble</label><br>
+                                    <label>Nivel de Interés en comprar</label><br>
                                     <select name="tipoInteresadoId" required>
                                         <option value="">Selecciona una opción</option>
                                         <? foreach ($TipoInteresados as $t) { ?>      

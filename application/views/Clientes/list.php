@@ -43,6 +43,7 @@
                                 <th>Fecha</th>
                                 <th>Recorrido</th>
                                 <th>Status</th>
+                                <th>Seguimiento de citas</th>
                                 <th>Dar de baja</th>
                                 </tr>
                             </thead>
@@ -55,6 +56,7 @@
                                         <th><?echo $d->FechaIngreso?></th>
                                         <th><?echo $d->HizoRecorrido?></th>
                                         <th><?echo $d->Status?></th>
+                                        <th><a class="btn waves-effect waves-light btn-secondary" href="<?php echo base_url('/citas/'.$d->id);?>">Seguimiento</a></th>
                                         <th>
                                             <? if($d->Status == 'Vigente') { ?>
                                                 <a class="btn waves-effect waves-light btn-secondary" onclick="if (confirm('¿Desea desactivar la seleccion?')) { location.href = '<?php echo base_url('/clientes/eliminarCliemte/'.$d->id) ?>'; } return false;">
