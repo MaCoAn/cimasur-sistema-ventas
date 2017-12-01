@@ -72,18 +72,30 @@ class ClientesModel extends CI_Model {
 
     public function insertarCliente($idVendedor)
     {    
+        $this->load->library('email');
+        
         $email = $this->input->post('email') == '' ?
             NULL : $this->input->post('email');
+        
+        $nombres = $this->input->post('nombres');
+        $apellidos = $this->input->post('apellidos');
+
+        if($this->buscarClienteSimilar($nombres, $apellidos)){
+            $idStatus = 3;
+            //$this->enviarCorreoClienteSimilar($nombres, $apellidos);
+        } else {
+            $idStatus = 1;
+        }
 
         $clienteData = array(
-            'nombres' => $this->input->post('nombres'),
-            'apellidos' => $this->input->post('apellidos'),
+            'nombres' => $nombres,
+            'apellidos' => $apellidos,
             'direccion' => $this->input->post('direccion'),
             'colonia' => $this->input->post('colonia'),
             'idMunicipio' => (int)$this->input->post('idMunicipio'),
             'email' => $email,
             'idComoSeEntero' => $this->input->post('idComoSeEntero'),
-            'idStatus' => 1,
+            'idStatus' => $idStatus,
             'fechaIngreso' => date('Y-m-d\TH:i:s'),
             'hizoRecorrido' => (int)$this->input->post('hizoRecorrido'),
             'idVendedor' => $idVendedor
@@ -163,6 +175,51 @@ class ClientesModel extends CI_Model {
             );
             $this->db->insert('ClienteReferenciador', $clienteRefData);
         }
+    }
+
+    public function buscarClienteSimilar($nombres, $apellidos){
+        $this->db->select('*');
+        $this->db->from('Cliente');
+        $this->db->like('Nombres', $nombres);
+        $query1 = $this->db->get();
+
+        $this->db->select('*');
+        $this->db->from('Cliente');
+        $this->db->like('Apellidos', $apellidos);
+        $query2 = $this->db->get();
+    
+        if ($query1->num_rows() >= 1 && $query2->num_rows() >= 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function enviarCorreoClienteSimilar($nombres, $apellidos){
+        $this->email->from('cimasurcrmsystem@gmail.com', 'CRM Cimasur System');
+        $this->email->to('cimasurcrmsystem@gmail.com');
+        $this->email->subject('Usuario Similar Creado');
+
+        $message = "Se ha creado el usuario ".$nombres." ".$apellidos.
+                   " en el CRM de Cimasur!\n\n".
+                   "Este usuario es muy similar a un usuario ya existente \n\n".
+                   "Favor de revisar el usuario para poder activarlo.\n";
+
+        $this->email->message($message);
+        $this->email->send();
+    }
+
+    public function enviaCorreoClienteRechazado($correoVendedor, $nombres, $apellidos){
+        $this->email->from('cimasurcrmsystem@gmail.com', 'CRM Cimasur System');
+        $this->email->to($correoVendedor);
+        $this->email->subject('Usuario Similar Rechazado');
+
+        $message = "El usuario ".$nombres." ".$apellidos.
+                   " que diste de alta se ha rechazado debido a que existe uno similar.\n\n".
+                   "Favor de utilizar el usuario existente para los tramites correspondientes. \n\n";
+
+        $this->email->message($message);
+        $this->email->send();
     }
 
     public function getIdFromTable($table, $filterCol, $filterVal) 
